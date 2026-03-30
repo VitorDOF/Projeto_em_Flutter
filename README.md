@@ -19,7 +19,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 
 ### 1. Clone este repositório
 ```bash
-git clone (https://github.com/VitorDOF/Projeto_em_Flutter.git)
+git clone https://github.com/VitorDOF/Projeto_em_Flutter.git
 ```
 ### Acesse
 ```bash
