@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             colors: [
               backgroundColor,
               widget.isModoEscuro
-                  ? const Color(0xFF1A1A1A)
+                  ? const Color(0xFF0D0D0D)
                   : const Color(0xFFBBDEFB),
             ],
           ),
@@ -472,7 +472,7 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: Colors.grey.withValues(alpha: 0.2),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

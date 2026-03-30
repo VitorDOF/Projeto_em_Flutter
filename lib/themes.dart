@@ -34,16 +34,16 @@ class AppTemas {
   }
 
   static ThemeData temaEscuro() {
-    const Color azulEscuro = Color(0xFF1565C0);
+    const Color azulEscuro = Color(0xFF2196F3); // era 0xFF1565C0
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.dark(
         primary: azulEscuro,
-        secondary: Colors.blue[700]!,
+        secondary: Colors.blue[300]!,
         surface: const Color(0xFF1E1E1E),
-        background: const Color(0xFF121212),
       ),
+      cardColor: const Color(0xFF2C2C2C),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFF2C2C2C).withOpacity(0.9),
