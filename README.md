@@ -23,7 +23,7 @@ git clone https://github.com/VitorDOF/Projeto_em_Flutter.git
 ```
 ### Acesse
 ```bash
-cd samu-app
+cd Projeto_em_Flutter
 ```
 ### Instale as dependências
 ```bash
