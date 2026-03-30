@@ -20,11 +20,8 @@ class _HomePageState extends State<HomePage> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    // Cores consistentes com a tela de login
     final Color azulPrincipal = colorScheme.primary;
-    // Removido 'azulSecundario' que não estava sendo usado
 
-    // CORREÇÃO: Usar 'surface' em vez de 'background' (depreciado)
     final Color backgroundColor = colorScheme.surface;
     final Color surfaceColor = theme.cardColor;
     final Color textColor = theme.textTheme.bodyLarge?.color ?? Colors.black;
@@ -98,7 +95,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // CORREÇÃO: Adicionados todos os parâmetros necessários
   Widget _buildWelcomeHeader(
       Color azulPrincipal,
       Color textColor,
@@ -184,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'SUA LOCALIZAÇÃO ATUAL',
                         style: TextStyle(
-                          color: secondaryTextColor, // CORRIGIDO: secondaryTextColor com 's' minúsculo
+                          color: secondaryTextColor,
                           fontSize: 11,
                           letterSpacing: 0.5,
                         ),
@@ -193,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'Rua das Flores, 123 - Centro',
                         style: TextStyle(
-                          color: textColor, // CORRIGIDO: textColor
+                          color: textColor,
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
@@ -566,7 +562,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 16),
 
-          // Lista de dicas horizontais
           SizedBox(
             height: 170,
             child: ListView(

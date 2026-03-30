@@ -72,7 +72,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     const SizedBox(height: 32),
                     _construirCampoEmail(esquemaCores),
                     const SizedBox(height: 16),
-                    _construirCampoSenha(esquemaCores), // MODIFICADO
+                    _construirCampoSenha(esquemaCores),
                     const SizedBox(height: 8),
                     _construirEsqueciSenha(esquemaCores),
                     const SizedBox(height: 16),
@@ -154,19 +154,17 @@ class _TelaLoginState extends State<TelaLogin> {
     );
   }
 
-  // CAMPO DE SENHA MODIFICADO - AGORA FUNCIONAL
   Widget _construirCampoSenha(ColorScheme esquemaCores) {
     return TextField(
       controller: _senhaController,
-      obscureText: _obscureText, // Controla se a senha está oculta
+      obscureText: _obscureText,
       decoration: InputDecoration(
         labelText: 'Sua senha',
         prefixIcon: Icon(Icons.lock_outline, color: esquemaCores.primary),
-        // MODIFICADO: IconButton que alterna a visibilidade
+
         suffixIcon: IconButton(
           onPressed: _toggleVisibilidadeSenha,
           icon: Icon(
-            // Muda o ícone conforme o estado
             _obscureText ? Icons.visibility_off : Icons.visibility,
             color: Colors.grey,
           ),
@@ -200,8 +198,8 @@ class _TelaLoginState extends State<TelaLogin> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage(
-            aoAlternarTema: widget.aoAlternarTema,  // Passa adiante
-            isModoEscuro: widget.isModoEscuro,      // Passa adiante
+            aoAlternarTema: widget.aoAlternarTema,
+            isModoEscuro: widget.isModoEscuro,
             ),
           ),
         );

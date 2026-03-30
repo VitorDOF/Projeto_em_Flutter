@@ -23,8 +23,8 @@ class _MeuAppState extends State<MeuApp> {
     });
   }
 
-  // Controle de qual tela mostrar
-  bool _estaLogado = false; // Mude para true para testar a HomePage
+
+  bool _estaLogado = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _MeuAppState extends State<MeuApp> {
       darkTheme: AppTemas.temaEscuro(),
       themeMode: _isModoEscuro ? ThemeMode.dark : ThemeMode.light,
       home: _estaLogado
-          ? HomePage(  // AGORA PASSA OS PARÂMETROS
+          ? HomePage(
         aoAlternarTema: _alternarTema,
         isModoEscuro: _isModoEscuro,
       )
