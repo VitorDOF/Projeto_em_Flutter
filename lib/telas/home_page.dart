@@ -69,11 +69,11 @@ class _HomePageState extends State<HomePage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
+]            colors: [
               backgroundColor,
               widget.isModoEscuro
                   ? const Color(0xFF0D0D0D)
-                  : const Color(0xFFBBDEFB),
+                  : const Color(0xFF90CAF9),
             ],
           ),
         ),
@@ -109,9 +109,11 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: azulPrincipal.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+            color: widget.isModoEscuro
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.blueGrey.withValues(alpha: 0.15),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -158,7 +160,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 20),
 
-          // Card de localização
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
@@ -262,7 +263,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 16),
 
-          // Grid de serviços
           GridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -328,8 +328,10 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha: 0.1),
-            blurRadius: 8,
+            color: isDark
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.blueGrey.withValues(alpha: 0.15),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
@@ -413,7 +415,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 16),
 
-          // Lista de hospitais
           _buildHospitalItem(
             name: 'Hospital Municipal',
             distance: '2.5 km',
@@ -468,8 +469,10 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.2),
-            blurRadius: 10,
+            color: widget.isModoEscuro
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.blueGrey.withValues(alpha: 0.15),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
@@ -613,6 +616,8 @@ class _HomePageState extends State<HomePage> {
     required Color textColor,
     required Color secondaryTextColor,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       width: 200,
       padding: const EdgeInsets.all(16),
@@ -621,8 +626,10 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha: 0.1),
-            blurRadius: 10,
+            color: isDark
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.blueGrey.withValues(alpha: 0.15),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],

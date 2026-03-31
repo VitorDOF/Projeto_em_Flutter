@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'home_page.dart';
 
 class TelaLogin extends StatefulWidget {
@@ -17,10 +16,13 @@ class TelaLogin extends StatefulWidget {
 }
 
 class _TelaLoginState extends State<TelaLogin> {
+  // 1. Adicionar a chave do formulário
+  final _formKey = GlobalKey<FormState>();
+
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
 
-  // NOVO: Controle para ver/ocultar senha
+  // Controle para ver/ocultar senha
   bool _obscureText = true;
 
   @override
@@ -30,7 +32,7 @@ class _TelaLoginState extends State<TelaLogin> {
     super.dispose();
   }
 
-  // NOVO: Método para alternar visibilidade da senha
+  // Método para alternar visibilidade da senha
   void _toggleVisibilidadeSenha() {
     setState(() {
       _obscureText = !_obscureText;
@@ -62,28 +64,32 @@ class _TelaLoginState extends State<TelaLogin> {
               padding: const EdgeInsets.all(24.0),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 400),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _construirCabecalho(tema, esquemaCores),
-                    const SizedBox(height: 16),
-                    _construirSubtitulo(tema),
-                    const SizedBox(height: 32),
-                    _construirCampoEmail(esquemaCores),
-                    const SizedBox(height: 16),
-                    _construirCampoSenha(esquemaCores),
-                    const SizedBox(height: 8),
-                    _construirEsqueciSenha(esquemaCores),
-                    const SizedBox(height: 16),
-                    _construirBotaoEntrar(),
-                    const SizedBox(height: 20),
-                    _construirDivisorOu(tema),
-                    const SizedBox(height: 20),
-                    _construirBotaoGoogle(tema, esquemaCores),
-                    const SizedBox(height: 20),
-                    _construirRodape(tema, esquemaCores),
-                  ],
+                // 2. Envolver a Column principal com Form
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _construirCabecalho(tema, esquemaCores),
+                      const SizedBox(height: 16),
+                      _construirSubtitulo(tema),
+                      const SizedBox(height: 32),
+                      _construirCampoEmail(esquemaCores),
+                      const SizedBox(height: 16),
+                      _construirCampoSenha(esquemaCores),
+                      const SizedBox(height: 8),
+                      _construirEsqueciSenha(esquemaCores),
+                      const SizedBox(height: 16),
+                      _construirBotaoEntrar(),
+                      const SizedBox(height: 20),
+                      _construirDivisorOu(tema),
+                      const SizedBox(height: 20),
+                      _construirBotaoGoogle(tema, esquemaCores),
+                      const SizedBox(height: 20),
+                      _construirRodape(tema, esquemaCores),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -143,25 +149,40 @@ class _TelaLoginState extends State<TelaLogin> {
     );
   }
 
+  // 3. Trocar TextField para TextFormField com validator
   Widget _construirCampoEmail(ColorScheme esquemaCores) {
-    return TextField(
+    return TextFormField(
       controller: _emailController,
       decoration: InputDecoration(
         labelText: 'Seu e-mail',
         prefixIcon: Icon(Icons.email_outlined, color: esquemaCores.primary),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
       keyboardType: TextInputType.emailAddress,
+      validator: (valor) {
+        if (valor == null || valor.trim().isEmpty) {
+          return 'Informe seu e-mail';
+        }
+        // Regex simples de e-mail
+        final emailValido = RegExp(r'^[\w.-]+@[\w.-]+\.\w{2,}$');
+        if (!emailValido.hasMatch(valor.trim())) {
+          return 'E-mail inválido';
+        }
+        return null;
+      },
     );
   }
 
+  // 3. Trocar TextField para TextFormField com validator
   Widget _construirCampoSenha(ColorScheme esquemaCores) {
-    return TextField(
+    return TextFormField(
       controller: _senhaController,
       obscureText: _obscureText,
       decoration: InputDecoration(
         labelText: 'Sua senha',
         prefixIcon: Icon(Icons.lock_outline, color: esquemaCores.primary),
-
         suffixIcon: IconButton(
           onPressed: _toggleVisibilidadeSenha,
           icon: Icon(
@@ -169,7 +190,19 @@ class _TelaLoginState extends State<TelaLogin> {
             color: Colors.grey,
           ),
         ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Informe sua senha';
+        }
+        if (valor.length < 6) {
+          return 'A senha deve ter ao menos 6 caracteres';
+        }
+        return null;
+      },
     );
   }
 
@@ -186,24 +219,30 @@ class _TelaLoginState extends State<TelaLogin> {
     );
   }
 
+  // 4. Atualizar o botão Entrar para validar antes de navegar
   Widget _construirBotaoEntrar() {
     return ElevatedButton(
       onPressed: () {
-        //login
-        print('Email: ${_emailController.text}');
-        print('Senha: ${_senhaController.text}');
+        // ✅ Só navega se todos os campos forem válidos
+        if (_formKey.currentState!.validate()) {
+          print('Email: ${_emailController.text}');
+          print('Senha: ${_senhaController.text}');
 
-
-        // Navegar para HomePage
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(
-            aoAlternarTema: widget.aoAlternarTema,
-            isModoEscuro: widget.isModoEscuro,
+          // Navegar para HomePage
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(
+                aoAlternarTema: widget.aoAlternarTema,
+                isModoEscuro: widget.isModoEscuro,
+              ),
             ),
-          ),
-        );
+          );
+        }
       },
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+      ),
       child: const Text('Entrar na minha conta'),
     );
   }
