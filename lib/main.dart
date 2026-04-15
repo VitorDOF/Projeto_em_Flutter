@@ -23,7 +23,6 @@ class _MeuAppState extends State<MeuApp> {
     });
   }
 
-
   bool _estaLogado = false;
 
   @override

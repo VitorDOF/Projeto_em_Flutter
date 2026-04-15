@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'cadastro_tela.dart';
 import 'home_page.dart';
 
 class TelaLogin extends StatefulWidget {
@@ -308,7 +309,17 @@ class _TelaLoginState extends State<TelaLogin> {
             // TODO: Navegar para cadastro
           },
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TelaCadastro(
+                    aoAlternarTema: widget.aoAlternarTema,
+                    isModoEscuro: widget.isModoEscuro,
+                  ),
+                ),
+              );
+            },
             child: Text(
               'Criar uma conta',
               style: TextStyle(color: esquemaCores.primary),

@@ -66,32 +66,32 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-]            colors: [
-              backgroundColor,
-              widget.isModoEscuro
-                  ? const Color(0xFF0D0D0D)
-                  : const Color(0xFF90CAF9),
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildWelcomeHeader(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
-                _buildEmergencyButton(azulPrincipal),
-                _buildServicesSection(azulPrincipal, textColor, surfaceColor),
-                _buildNearbyHospitals(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
-                _buildHealthTips(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                            colors: [
+            backgroundColor,
+            widget.isModoEscuro
+            ? const Color(0xFF0D0D0D)
+                : const Color(0xFF90CAF9),
+        ],
       ),
+    ),
+    child: SafeArea(
+    child: SingleChildScrollView(
+    child: Column(
+    children: [
+    _buildWelcomeHeader(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
+    _buildEmergencyButton(azulPrincipal),
+    _buildServicesSection(azulPrincipal, textColor, surfaceColor),
+    _buildNearbyHospitals(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
+    _buildHealthTips(azulPrincipal, textColor, secondaryTextColor, surfaceColor),
+    const SizedBox(height: 20),
+    ],
+    ),
+    ),
+    ),
+    ),
     );
   }
 
