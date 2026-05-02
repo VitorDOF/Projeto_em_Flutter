@@ -35,7 +35,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
   }
 
   void _toggleSenha() => setState(() => _obscureSenha = !_obscureSenha);
-  void _toggleConfirmar() => setState(() => _obscureConfirmar = !_obscureConfirmar);
+  void _toggleConfirmar() =>
+      setState(() => _obscureConfirmar = !_obscureConfirmar);
 
   void _submeterCadastro() {
     if (_formKey.currentState!.validate()) {
@@ -112,7 +113,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Botão voltar
         IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(Icons.arrow_back_ios_new, color: esquemaCores.primary),
@@ -143,7 +143,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
             ),
           ],
         ),
-        // Espaço para alinhar o título ao centro
         IconButton(
           onPressed: widget.aoAlternarTema,
           icon: Icon(
@@ -222,7 +221,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
-          return 'Crie uma senha';
+          return 'Informe uma senha'; // ✅ corrigido: diferente do labelText
         }
         if (valor.length < 6) {
           return 'A senha deve ter ao menos 6 caracteres';
